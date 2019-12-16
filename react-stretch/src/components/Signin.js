@@ -1,9 +1,18 @@
 import React from 'react'
+import axios from 'axios'
 import useForm from 'react-hook-form';
 
-const Signin = () => {
+const Signin = (props) => {
+	const { addCurrentuser } = props
 	const { register, handleSubmit, errors } = useForm();
-	const onSubmit = data => console.log(data);
+	const onSubmit = (data) => {
+		axios.post("http://localhost:4200/api/auth/login", data, { withCredentials: true })
+			.then(res => {
+				alert(`Successful Login!`)
+				addCurrentuser(res.data)
+			})
+			.catch(err => console.log(err.message))
+	};
 	console.log(errors);
 
 	return (

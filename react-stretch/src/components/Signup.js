@@ -1,15 +1,20 @@
 import React from 'react'
 import useForm from 'react-hook-form';
+import axios from 'axios';
 
 const Signup = () => {
 	const { register, handleSubmit, errors } = useForm();
-	const onSubmit = data => console.log(data);
+	const onSubmit = (data) => {
+		axios.post("http://localhost:4200/api/auth/register", data, { withCredentials: true })
+			.then(res => alert(`Success! Please continue to login ${res.data.username}!`))
+			.catch(err => console.log(err.message))
+	};
 	console.log(errors);
 
 	return (
 		<form onSubmit={handleSubmit(onSubmit)}>
-			<input type="text" placeholder="Username" name="Username" ref={register({ required: true, maxLength: 80 })} />
-			<input type="text" placeholder="Password" name="Password" ref={register({ required: true })} />
+			<input type="text" placeholder="Username" name="username" ref={register({ required: true, maxLength: 80 })} />
+			<input type="password" placeholder="Password" name="password" ref={register({ required: true })} />
 
 			<input type="submit" />
 		</form>

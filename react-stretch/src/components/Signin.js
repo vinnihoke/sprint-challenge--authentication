@@ -9,7 +9,8 @@ const Signin = (props) => {
 		axios.post("http://localhost:4200/api/auth/login", data, { withCredentials: true })
 			.then(res => {
 				alert(`Successful Login!`)
-				storeToken(res.data)
+				storeToken()
+				localStorage.setItem('token', res.data)
 			})
 			.catch(err => console.log(err.message))
 	};

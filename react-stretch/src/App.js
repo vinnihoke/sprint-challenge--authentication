@@ -1,11 +1,20 @@
-import React from 'react';
+import React, { useState, Component } from 'react';
 import AuthFlow from './views/AuthFlow';
+import Jokes from './views/Jokes';
 
 function App() {
+
+  const [token, setToken] = useState(false);
+
+  const storeToken = () => {
+    setToken(!token);
+  };
+
   return (
     <div className="App">
-      <h3>React app ready.</h3>
-      <AuthFlow />
+      <h3>Sprint Challenge - Authentication</h3>
+      <AuthFlow storeToken={storeToken} />
+      {token ? <Jokes /> : <p>Please sign in...</p>}
     </div>
   );
 }

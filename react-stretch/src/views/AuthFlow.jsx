@@ -5,16 +5,8 @@ import Signup from "../components/Signup";
 // UI
 import { Button } from "reactstrap";
 
-const AuthFlow = () => {
+const AuthFlow = props => {
   const [signup, setSignup] = useState(false);
-  const [token, setToken] = useState([]);
-
-  const storeToken = token => {
-    setToken(token);
-  };
-
-  console.log(token);
-
   return (
     <div>
       <h3>Auth Flow</h3>
@@ -27,7 +19,7 @@ const AuthFlow = () => {
       ) : (
         <div>
           <h5>Sign-in</h5>
-          <Signin storeToken={storeToken} />
+          <Signin {...props} />
         </div>
       )}
       <Button color="warning" onClick={() => setSignup(!signup)}>

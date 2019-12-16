@@ -7,11 +7,13 @@ import { Button } from "reactstrap";
 
 const AuthFlow = () => {
   const [signup, setSignup] = useState(false);
-  const [currentuser, setCurrentuser] = useState([]);
+  const [token, setToken] = useState([]);
 
-  const addCurrentuser = user => {
-    setCurrentuser(user);
+  const storeToken = token => {
+    setToken(token);
   };
+
+  console.log(token);
 
   return (
     <div>
@@ -20,12 +22,12 @@ const AuthFlow = () => {
       {signup ? (
         <div>
           <h5>Sign-up</h5>
-          <Signup addCurrentuser={addCurrentuser} />
+          <Signup />
         </div>
       ) : (
         <div>
           <h5>Sign-in</h5>
-          <Signin addCurrentuser={addCurrentuser} />
+          <Signin storeToken={storeToken} />
         </div>
       )}
       <Button color="warning" onClick={() => setSignup(!signup)}>

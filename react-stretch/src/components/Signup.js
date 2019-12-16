@@ -9,7 +9,6 @@ const Signup = () => {
 			.then(res => alert(`Success! Please continue to login ${res.data.username}!`))
 			.catch(err => console.log(err.message))
 	};
-	console.log(errors);
 
 	return (
 		<form onSubmit={handleSubmit(onSubmit)}>
